@@ -1,4 +1,4 @@
-# 🧠 NeuroScan: Deep Learning Brain Tumor Detection & Diagnostic Assistant
+# NeuroScan: Deep Learning Brain Tumor Detection & Diagnostic Assistant
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
@@ -7,13 +7,13 @@
 [![Vite](https://img.shields.io/badge/Vite-5.0-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-3D%20Viewer-black.svg?logo=three.js&logoColor=white)](https://threejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Accuracy](https://img.shields.io/badge/Model%20Accuracy-91.88%25-brightgreen.svg)](#-model-evaluation--performance)
+[![Accuracy](https://img.shields.io/badge/Model%20Accuracy-91.88%25-brightgreen.svg)](#model-evaluation--performance)
 
 > **An End-to-End Medical Imaging Diagnostic Platform** combining Deep Residual Learning (ResNet-50), Explainable AI (Grad-CAM), 3D Anatomical Coordinate Localization, and Automated Medical Reporting.
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 Brain tumor segmentation and classification from magnetic resonance imaging (MRI) is vital for neurosurgical planning and radiotherapy. However, deploying clinical deep learning models faces two major hurdles:
 1. **The "Black-Box" Dilemma**: Deep networks lack transparent decision boundaries, making unsupervised clinical adoption risky.
@@ -23,7 +23,7 @@ Brain tumor segmentation and classification from magnetic resonance imaging (MRI
 
 ---
 
-## ✨ Key System Capabilities
+## Key System Capabilities
 
 - **Multi-Class Differential Diagnosis**: Categorizes scans across four distinct pathological profiles:
   - **Glioma** (High-grade intra-axial neuroepithelial tumor)
@@ -38,7 +38,7 @@ Brain tumor segmentation and classification from magnetic resonance imaging (MRI
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 NeuroScan uses a microservice-style decoupled architecture: a high-throughput **FastAPI** AI inference engine servicing an interactive **React + Three.js** clinical workstation.
 
@@ -74,7 +74,7 @@ flowchart TD
 
 ---
 
-## 🔬 Deep Learning Methodology
+## Deep Learning Methodology
 
 ### 1. Contrast-Limited Adaptive Histogram Equalization (CLAHE)
 MRI scans frequently suffer from intensity non-uniformity across different scanner magnet strengths. We apply CLAHE to partition images into local contextual tiles:
@@ -98,7 +98,7 @@ The positive linear combination ensures that features directly increasing the ta
 
 ---
 
-## 📊 Model Evaluation & Performance
+## Model Evaluation & Performance
 
 The model was tested across an extensive validation benchmark of MRI slices, achieving an overall **91.88% diagnostic accuracy**.
 
@@ -114,7 +114,7 @@ The model was tested across an extensive validation benchmark of MRI slices, ach
 
 ---
 
-## 🖼️ Diagnostic Results & Interface
+## Diagnostic Results & Interface
 
 ### 1. Confusion Matrix & Benchmark Validation
 <p align="center">
@@ -139,7 +139,7 @@ The model was tested across an extensive validation benchmark of MRI slices, ach
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```plaintext
 Brain-Tumor-Detection/
@@ -176,7 +176,7 @@ Brain-Tumor-Detection/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Python**: `3.10` or higher
@@ -242,7 +242,7 @@ docker-compose up --build
 
 ---
 
-## 🔌 API Reference
+## API Reference
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
@@ -252,16 +252,16 @@ docker-compose up --build
 
 ---
 
-## ⚖️ Clinical Disclaimer
+## Clinical Disclaimer
 
 > [!CAUTION]
 > **This software is developed strictly for academic research and decision-support exploration.** It is not an FDA-approved diagnostic medical device. Any therapeutic decisions or diagnoses must be made by qualified healthcare professionals and verified with official histopathology and standard radiological procedures.
 
 ---
 
-## 📄 License & Attribution
+## License & Attribution
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 Developed & Maintained by **[Devansh Saxena](https://github.com/Devanshsaxena12)**  
-📧 Contact: `devanshsaxena2468@gmail.com`
+Email Contact: `devanshsaxena2468@gmail.com`
