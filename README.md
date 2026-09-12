@@ -1,230 +1,267 @@
-<p align="center">
-  <img src="assets/banner.png" alt="Neural Nexus Banner" height="200" />
-</p>
+# 🧠 NeuroScan: Deep Learning Brain Tumor Detection & Diagnostic Assistant
 
-<h1 align="center">Neural-NEXUS</h1>
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-18-61DAFB.svg?logo=react&logoColor=black)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.0-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Three.js](https://img.shields.io/badge/Three.js-3D%20Viewer-black.svg?logo=three.js&logoColor=white)](https://threejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Accuracy](https://img.shields.io/badge/Model%20Accuracy-91.88%25-brightgreen.svg)](#-model-evaluation--performance)
 
-<p align="center">
-  <strong>Neural-Link: Advanced Binary Diagnostics for Human Pathology</strong>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/LICENSE-MIT-FF00FF?style=social&logo=github" alt="License" />
-  <img src="https://img.shields.io/badge/CYBER_DECK-PYTHON-FF00FF?style=social&logo=python" alt="Python" />
-  <img src="https://img.shields.io/badge/UPLINK-FASTAPI-FF00FF?style=social&logo=fastapi" alt="FastAPI" />
-  <img src="https://img.shields.io/badge/AI_RIG-PYTORCH-FF00FF?style=social&logo=pytorch" alt="PyTorch" />
-  <img src="https://img.shields.io/badge/HUD_LINK-REACT-FF00FF?style=social&logo=react" alt="React" />
-</p>
-
-<p align="center">
-  <a href="https://neural-nexus-green.vercel.app/">
-    <img src="https://badgen.net/badge/🔬_LAUNCH_DIAGNOSTIC_HUD/Live_Demo/cyan?icon=github" alt="Frontend Demo" />
-  </a>
-  &nbsp;
-  <a href="https://huggingface.co/spaces/purvansh01/neural-nexus-backend">
-    <img src="https://badgen.net/badge/🧠_SYNC_NEURAL_KERNEL/Hugging_Face/black?icon=huggingface" alt="Backend AI Core" />
-  </a>
-</p>
+> **An End-to-End Medical Imaging Diagnostic Platform** combining Deep Residual Learning (ResNet-50), Explainable AI (Grad-CAM), 3D Anatomical Coordinate Localization, and Automated Medical Reporting.
 
 ---
 
-## 🔬 Project Mission & Core 
+## 📌 Executive Summary
 
-**Neural-NEXUS** is engineered to navigate the fundamental challenges of modern medical AI: dataset class disparity, inter-patient variability, and the critical requirement for **clinical interpretability**. It transforms raw MRI imaging into a cinematic diagnostic experience, bridging the gap between "Black-Box" models and actionable neurological insights.
+Brain tumor segmentation and classification from magnetic resonance imaging (MRI) is vital for neurosurgical planning and radiotherapy. However, deploying clinical deep learning models faces two major hurdles:
+1. **The "Black-Box" Dilemma**: Deep networks lack transparent decision boundaries, making unsupervised clinical adoption risky.
+2. **Pathological Class Imbalance**: High disparity between prevalent tumor categories (Gliomas, Meningiomas, Pituitary tumors) and baseline negative controls.
 
-### 🚀 Core System Capabilities
-
-| Pillar | Description | Tech Stack |
-| :--- | :--- | :--- |
-| **AI-Driven Analysis** | Robust classification across Glioma, Meningioma, Pituitary, and Healthy controls. | ResNet-50 + Inverse-Frequency Weighting |
-| **Spatial Interpretability** | Grad-CAM heatmaps providing visual proof for every diagnostic decision. | Gradient-weighted Class Activation Mapping |
-| **3D Spatial Copilot** | An interactive 3D brain viewer mapping 2D findings to anatomical coordinates. | React Three Fiber + Three.js |
-| **Narrative Synthesis** | Automated conversion of raw diagnostic telemetry into clinical narratives. | BioMistral LLM Integration |
-| **Automated Reporting** | One-click localized PDF reports with embedded heatmaps and risk assessments. | fpdf2 Engine |
+**NeuroScan** bridges clinical radiology and deep learning by coupling a **fine-tuned ResNet-50** classifier with **Gradient-Weighted Class Activation Mapping (Grad-CAM)** and **Three.js-driven 3D anatomical localization**. Radiologists and clinicians receive not only classification predictions with confidence intervals, but also visual verification overlays, morphological risk analysis, and exportable PDF summaries.
 
 ---
 
-## 🛠️ System Architecture
+## ✨ Key System Capabilities
 
-Neural Nexus follows a decoupled, high-performance architecture optimized for real-time clinical workflows.
+- **Multi-Class Differential Diagnosis**: Categorizes scans across four distinct pathological profiles:
+  - **Glioma** (High-grade intra-axial neuroepithelial tumor)
+  - **Meningioma** (Extra-axial dural-attached mass)
+  - **Pituitary Adenoma** (Sellar region endocrine neoplasm)
+  - **Healthy Control** (Non-tumorous baseline verification)
+- **Explainable AI (XAI) with Grad-CAM**: Generates high-resolution heatmaps pinpointing exactly which anatomical structures and hyper-intense regions influenced the model's decision.
+- **Adaptive Contrast Normalization (CLAHE)**: Enhances low-contrast soft tissue boundaries in T1-weighted and T2-weighted MRI sequences prior to inference.
+- **Interactive 3D Anatomical Viewer**: Projects 2D axial MRI findings onto a reference 3D human brain model using React Three Fiber.
+- **Clinical Narrative Generation**: Synthesizes radiological telemetry and tumor coordinates into structured findings via clinical LLM integration.
+- **Instant Clinical PDF Reports**: Generates formal clinical documentation containing scan telemetry, heatmap evidence, confidence metrics, and physician verification fields.
+
+---
+
+## 🏗️ System Architecture
+
+NeuroScan uses a microservice-style decoupled architecture: a high-throughput **FastAPI** AI inference engine servicing an interactive **React + Three.js** clinical workstation.
 
 ```mermaid
-graph TD
-    User([Clinician / User])
-    FR[React Clinical HUD]
-    BK[FastAPI AI Core]
-    RTF[React Three Fiber - 3D Brain]
-    PT[PyTorch - ResNet-50]
-    BM[BioMistral LLM API]
-    PDF[fpdf2 Report Engine]
+flowchart TD
+    subgraph Client ["Clinician Workstation (React + Vite)"]
+        UI["Clinical Dashboard"]
+        Split["Multi-Modal Split Viewer"]
+        ThreeD["3D Anatomical Viewer (Three.js)"]
+    end
 
-    User <-->|Interactive UI| FR
-    FR <-->|Telemetry & Controls| BK
-    FR -->|3D Mapping| RTF
-    BK -->|Diagnostic Inference| PT
-    BK -->|Clinical Narrative| BM
-    BK -->|PDF Generation| PDF
-    FR -.->|Deployed on| Vercel
-    BK -.->|Deployed on| HF[Hugging Face Spaces]
+    subgraph Backend ["Diagnostic AI Engine (FastAPI)"]
+        API["REST API Gateway"]
+        Pre["CLAHE Image Preprocessor"]
+        Model["ResNet-50 Backbone (PyTorch)"]
+        CAM["Grad-CAM Interpretability Engine"]
+        LLM["Clinical Narrative Engine"]
+        PDF["PDF Diagnostic Report Generator"]
+    end
+
+    UI -->|Upload MRI Scan| API
+    API --> Pre
+    Pre --> Model
+    Model --> CAM
+    Model -->|Classification & Probabilities| API
+    CAM -->|Activation Heatmap & Coords| API
+    API --> LLM
+    API --> PDF
+    API -->|Telemetry & Visual Overlays| UI
+    UI --> Split
+    UI -->|Spatial Coordinates| ThreeD
 ```
 
 ---
 
-## 🧪 ML Diagnostic Pipeline
+## 🔬 Deep Learning Methodology
 
-The system processes MRI scans through a multi-stage pipeline designed for both accuracy and transparency.
+### 1. Contrast-Limited Adaptive Histogram Equalization (CLAHE)
+MRI scans frequently suffer from intensity non-uniformity across different scanner magnet strengths. We apply CLAHE to partition images into local contextual tiles:
+$$\text{Clip Limit} = 2.0, \quad \text{Grid Size} = (8 \times 8)$$
+This sharpens boundary contrast between lesion borders and healthy parenchymal tissue without over-amplifying background noise.
 
-```mermaid
-graph LR
-    Input[MRI Scan Input] --> CLAHE[CLAHE Image Enhancement]
-    CLAHE --> ResNet[ResNet-50 Backbone]
-    ResNet --> Feat[Feature Representation]
-    Feat --> Class[Classification Head]
-    Feat --> GC[Grad-CAM Heatmap]
-    Class --> Conf[Confidence Score]
-    GC --> Loc[Tumor Localization]
-    Conf & Loc --> Syn[BioMistral Synthesis]
-    Syn --> Report[Clinical Diagnostic Report]
+### 2. Deep Residual Transfer Learning
+The classification backbone utilizes **ResNet-50**, pre-trained on ImageNet and fine-tuned on neuro-imaging slices. Residual skip connections address gradient vanishing:
+$$\mathcal{H}(x) = \mathcal{F}(x, \{W_i\}) + x$$
+Where $\mathcal{F}(x, \{W_i\})$ denotes the residual mapping to be learned, making optimization stable across deep feature extractors.
+
+### 3. Class-Frequency Weighted Cross-Entropy Loss
+To counteract sample size disparities across rare vs. frequent pathologies, loss penalties are dynamically adjusted using inverse-frequency weighting:
+$$\mathcal{L}_{WCE} = - \sum_{c=1}^{C} w_c \cdot y_c \log(\hat{y}_c), \quad \text{with} \quad w_c = \frac{N_{total}}{C \cdot N_c}$$
+
+### 4. Gradient-Weighted Class Activation Mapping (Grad-CAM)
+To extract visual interpretability maps, we capture gradients flowing into the final convolutional layer (`layer4`):
+$$\alpha_k^c = \frac{1}{Z} \sum_i \sum_j \frac{\partial Y^c}{\partial A_{i,j}^k}$$
+$$L_{\text{Grad-CAM}}^c = \text{ReLU}\left( \sum_k \alpha_k^c A^k \right)$$
+The positive linear combination ensures that features directly increasing the target class score are highlighted, while suppressive artifacts are filtered by the $\text{ReLU}$ non-linearity.
+
+---
+
+## 📊 Model Evaluation & Performance
+
+The model was tested across an extensive validation benchmark of MRI slices, achieving an overall **91.88% diagnostic accuracy**.
+
+| Pathological Category | Precision | Recall (Sensitivity) | F1-Score | Diagnostic Significance |
+| :--- | :---: | :---: | :---: | :--- |
+| **Glioma** | 0.94 | 0.92 | **0.93** | Robust capture of aggressive infiltrating lesions |
+| **Meningioma** | 0.89 | 0.91 | **0.90** | Distinct delineation of extra-axial dura attachments |
+| **Pituitary Adenoma** | 0.92 | 0.93 | **0.92** | High sensitivity in sellar / parasellar region |
+| **Healthy Control (Normal)** | 0.93 | 0.89 | **0.91** | High specificity minimizing false-positive alarms |
+
+> [!TIP]
+> All classifications feature a minimum threshold safeguard: predictions below 75% confidence trigger an automated flag recommending manual radiologist review.
+
+---
+
+## 🖼️ Diagnostic Results & Interface
+
+### 1. Confusion Matrix & Benchmark Validation
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3f6a8497-37ef-4abd-9422-00cd68ef4604" alt="Validation Confusion Matrix" width="700" />
+</p>
+
+### 2. Grad-CAM Interpretability vs. Healthy Baseline
+| Pathological Tumor Localization | Healthy Control Verification |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/6d22032e-b411-4c6c-a83d-e0a391909178" alt="Tumor Localization" width="400" /> | <img src="https://github.com/user-attachments/assets/f49be335-3013-437c-a29b-6b7121c7c2f4" alt="Healthy Control" width="400" /> |
+| *Accurate localization over abnormal hyper-intense mass* | *Uniform bilateral symmetry detected in negative control* |
+
+### 3. Clinical Workstation Interface
+| Dual-Pane MRI & Heatmap Inspection | Comprehensive Diagnostic Dashboard |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/b882cbe1-7e8a-4683-9b17-6418027beda7" alt="Split View" width="450" /> | <img src="https://github.com/user-attachments/assets/d8a946fb-fb62-4c15-8086-2b481171e6fa" alt="Clinical Dashboard" width="450" /> |
+
+### 4. Telemetry & Morphological Summary
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6205b700-5f1b-4b85-9e4c-60a5cd0d6702" alt="Diagnostic Telemetry" width="700" />
+</p>
+
+---
+
+## 📁 Repository Structure
+
+```plaintext
+Brain-Tumor-Detection/
+├── backend/
+│   ├── main.py                     # FastAPI REST server & routing
+│   ├── model.py                    # PyTorch ResNet-50 architecture & loader
+│   ├── utils.py                    # CLAHE, Grad-CAM overlays & transformations
+│   ├── report.py                   # Automated clinical PDF report generator
+│   ├── llm_engine.py               # Clinical narrative synthesis
+│   ├── requirements.txt            # Backend Python dependencies
+│   ├── Dockerfile                  # Container definition for backend
+│   └── weight/
+│       └── best_tumor_model.pth    # Fine-tuned PyTorch model weights (Git LFS)
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx                 # Clinical dashboard UI
+│   │   ├── BrainModel.jsx          # Three.js 3D brain spatial visualization
+│   │   ├── main.jsx                # Application root
+│   │   └── index.css               # Styling & Tailwind setup
+│   ├── public/
+│   │   └── head.glb                # 3D anatomical reference mesh
+│   ├── package.json                # Frontend dependencies
+│   └── vite.config.js              # Vite bundler configuration
+├── docs/
+│   └── brain_tumor_technical_details.txt
+├── notebooks/
+│   └── THE_IMPOSTERS.ipynb         # Model training & ablation experiments
+├── docker-compose.yml              # Multi-container orchestration
+├── .gitattributes                  # Git LFS pointer tracking configuration
+├── .gitignore                      # Ignore bulky files & credentials
+├── LICENSE                         # MIT License
+└── README.md                       # Project documentation
 ```
 
 ---
 
-## 📚 Theoretical Foundations
+## 🚀 Getting Started
 
-### 1. Residual Learning and Identity Mapping
-Neural-NEXUS utilizes a ResNet50 backbone, addressing the **degradation problem** in deep networks.
-*   **The Residual Solution**: Instead of learning a direct mapping $H(x)$, we fit a residual mapping $F(x) = H(x) - x$. The original mapping is recast as $F(x) + x$.
-*   **Significance**: It is mathematically simpler to optimize residuals. If an identity mapping is optimal, the network easily drives weights to zero via skip-connections.
-
-### 2. Weighted Cross-Entropy Loss
-To handle class imbalance (e.g., rare tumor types vs. common ones), we employ **Inverse-Frequency Weighting**.
-The penalty for class $j$ is scaled by:
-$$w_j = \frac{N}{C \cdot n_j}$$
-Where $N$ is total samples, $C$ is number of classes, and $n_j$ is the count for class $j$.
-
-### 3. Grad-CAM: Visual Proof
-Interpretability is achieved via Grad-CAM, producing a localization map $L^c_{Grad-CAM}$.
-1.  **Weight Computation**: $\alpha^c_k = \frac{1}{Z} \sum_i \sum_j \frac{\partial y^c}{\partial A^k_{ij}}$
-2.  **Activation Mapping**: $L^c_{Grad-CAM} = ReLU(\sum_k \alpha^c_k A^k)$
-This identifies the specific structural features (density shifts, contrast anomalies) that drove the classification.
+### Prerequisites
+- **Python**: `3.10` or higher
+- **Node.js**: `18.x` or higher (`npm` included)
+- **Git & Git LFS**: Installed on your system
+- *(Optional)* **CUDA-capable GPU** for accelerated inference
 
 ---
 
-## 📊 Dataset & Performance
-
-**Kaggle Source**: [Brain Tumor Healthcare Dataset](https://www.kaggle.com/datasets/purvanshjoshi1/healthcare)
-
-| Pathology Category | Image Count | Theory of Role |
-| :--- | :--- | :--- |
-| **Glioma** | 5,625 | High-volume positive class |
-| **Meningioma** | 3,978 | Structural positive class |
-| **Pituitary** | 4,363 | Endocrine-origin positive class |
-| **No Tumor** | 3,847 | Baseline / Negative Control |
-
-**Result**: Tested at **91.88% accuracy** with verified clinical stability.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Devanshsaxena12/Brain-Tumor-Detection.git
+cd Brain-Tumor-Detection
+git lfs pull
+```
 
 ---
 
-## 📈 Clinical Validation Matrix
+### 2. Backend Setup
 
-To ensure medical-grade reliability, the system is evaluated across precision and sensitivity metrics for each pathological class.
-
-| Pathology | Precision | Sensitivity (Recall) | F1-Score | Clinical Signification |
-| :--- | :--- | :--- | :--- | :--- |
-| **Glioma** | 0.94 | 0.92 | 0.93 | High-confidence identification of aggressive masses. |
-| **Meningioma** | 0.89 | 0.91 | 0.90 | Precise localization of structural anomalies. |
-| **Pituitary** | 0.92 | 0.93 | 0.92 | Validated endocrine-zone diagnostic stability. |
-| **Healthy Control** | 0.93 | 0.89 | 0.91 | Robust negative-scan verification. |
-
-> [!NOTE]
-> Metrics are derived from the [Brain Tumor Healthcare Dataset](https://www.kaggle.com/datasets/purvanshjoshi1/healthcare) validation split.
-
----
-
-## ⚖️ Clinical Safety & XAI Governance
-
-Neural-NEXUS is engineered as a **Diagnostic Copilot (Human-in-the-Loop)**. It does not replace clinical judgment but augments it through:
-
-1.  **Mandatory Verification**: Every classification *must* be verified against the generated Grad-CAM heatmap.
-2.  **Transparency Protocol**: The system explicitly flags low-confidence (<75%) predictions for manual review.
-3.  **Data Integrity**: Decoupled architecture ensures that raw MRI telemetry is processed in an isolated diagnostic core.
-
----
-
-## 🗺️ System Evolution Roadmap
-
-| Phase | Milestone | Objective |
-| :--- | :--- | :--- |
-| **Phase 1** | DICOM 3.0 Integration | Native support for standard hospital imaging formats. |
-| **Phase 2** | Multi-Modal Synthesis | Support for CT and PET scan overlay in the 3D HUD. |
-| **Phase 3** | Federated Learning | Privacy-preserving model fine-tuning across distributed nodes. |
-| **Phase 4** | Mobile Physician App | Real-time diagnostic alerts for on-call neurologists. |
-
----
-
-## 🖼️ Clinical Gallery
-
-### Tier 1: Performance & Statistical Validation
-The system demonstrated a **91.88% confusion matrix accuracy**, confirming its theoretical stability across all four pathological categories.
-<img width="100%" alt="Confusion Matrix" src="https://github.com/user-attachments/assets/3f6a8497-37ef-4abd-9422-00cd68ef4604" />
-
----
-
-### Tier 2: Interpretability & Localization Evidence
-Neural-NEXUS provides visual proof for every diagnostic decision. Grade-weighted Class Activation Mapping (Grad-CAM) identifies the specific density variations and contrast anomalies that drive the classification.
-
-<table border="0">
-  <tr>
-    <td width="50%"><img width="100%" alt="Tumor Localization" src="https://github.com/user-attachments/assets/6d22032e-b411-4c6c-a83d-e0a391909178" /><br><em><strong>Pathological Localization</strong>: Heatmaps correspond to detected tumor masses.</em></td>
-    <td width="50%"><img width="100%" alt="Healthy Control" src="https://github.com/user-attachments/assets/f49be335-3013-437c-a29b-6b7121c7c2f4" /><br><em><strong>Healthy Control</strong>: The model evaluates structural symmetry in negative cases.</em></td>
-  </tr>
-</table>
-
----
-
-### Tier 3: Unified Clinical HUD & Intelligence
-The frontend provides a high-density "Mission Control" aesthetic, integrating raw MRI telemetry with 3D spatial mapping and BioMistral clinical narratives.
-
-| Interactive Split-View (RAW vs Heatmap) | High-Density Diagnostic Dashboard |
-| :--- | :--- |
-| <img width="100%" alt="Split View" src="https://github.com/user-attachments/assets/b882cbe1-7e8a-4683-9b17-6418027beda7" /> | <img width="100%" alt="Full Report" src="https://github.com/user-attachments/assets/d8a946fb-fb62-4c15-8086-2b481171e6fa" /> |
-
-#### 📊 Diagnostic Summary & Telemetry
-The final synthesis combines classification confidence, spatial coordinates, and clinical risk assessments into a unified clinician-ready view.
-<img width="100%" alt="Summary" src="https://github.com/user-attachments/assets/6205b700-5f1b-4b85-9e4c-60a5cd0d6702" />
-
----
-
-## ⚙️ Setup & Installation
-
-### 📊 Dataset Preparation
-To maintain a lean repository, the raw dataset is not included. 
-1. Download the **Brain Tumor Healthcare Dataset** from [Kaggle](https://www.kaggle.com/datasets/purvanshjoshi1/healthcare).
-2. Place the `Healthcare_1.zip` file or its extracted contents into the `/dataset` directory.
-   
-### Backend (Python/FastAPI)
 ```bash
 cd backend
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate
-pip install -r requirements.txt
-python main.py
-```
 
-### Frontend (React/Vite)
+# Create and activate virtual environment
+python -m venv venv
+
+# On Windows:
+venv\Scripts\activate
+# On Linux/macOS:
+# source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start FastAPI server
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+The API documentation will be available at: **`http://localhost:8000/docs`**
+
+---
+
+### 3. Frontend Setup
+
 ```bash
-cd frontend
+cd ../frontend
+
+# Install dependencies
 npm install
+
+# Run Vite development server
 npm run dev
 ```
+Access the application in your browser at: **`http://localhost:5173`**
 
-### Docker Deployment
+---
+
+### 4. Running with Docker Compose
+
+To spin up both services with one command:
 ```bash
 docker-compose up --build
 ```
 
 ---
 
-## ⚖️ License & Credits
-Licensed under the MIT License. Developed by **Purvansh Joshi**.
-The project incorporates BioMistral for clinical LLM capabilities and Three.js for spatial visualization.
+## 🔌 API Reference
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Checks AI Core status, compute device (CPU/CUDA), and model status. |
+| `POST` | `/api/analyze` | Accepts an MRI image file (`multipart/form-data`) and returns label, class probabilities, Grad-CAM heatmap, 3D coordinates, and clinical narrative. |
+| `POST` | `/api/report` | Generates a downloadable, formatted PDF diagnostic report. |
+
+---
+
+## ⚖️ Clinical Disclaimer
+
+> [!CAUTION]
+> **This software is developed strictly for academic research and decision-support exploration.** It is not an FDA-approved diagnostic medical device. Any therapeutic decisions or diagnoses must be made by qualified healthcare professionals and verified with official histopathology and standard radiological procedures.
+
+---
+
+## 📄 License & Attribution
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+Developed & Maintained by **[Devansh Saxena](https://github.com/Devanshsaxena12)**  
+📧 Contact: `devanshsaxena2468@gmail.com`
