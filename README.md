@@ -6,7 +6,6 @@
 [![React](https://img.shields.io/badge/React-18-61DAFB.svg?logo=react&logoColor=black)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.0-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-3D%20Viewer-black.svg?logo=three.js&logoColor=white)](https://threejs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Accuracy](https://img.shields.io/badge/Model%20Accuracy-91.88%25-brightgreen.svg)](#model-evaluation--performance)
 
 > **An End-to-End Medical Imaging Diagnostic Platform** combining Deep Residual Learning (ResNet-50), Explainable AI (Grad-CAM), 3D Anatomical Coordinate Localization, and Automated Medical Reporting.
@@ -170,7 +169,6 @@ Brain-Tumor-Detection/
 ├── docker-compose.yml              # Multi-container orchestration
 ├── .gitattributes                  # Git LFS pointer tracking configuration
 ├── .gitignore                      # Ignore bulky files & credentials
-├── LICENSE                         # MIT License
 └── README.md                       # Project documentation
 ```
 
@@ -259,9 +257,7 @@ docker-compose up --build
 
 ---
 
-## License & Attribution
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+## Author & Attribution
 
 Developed & Maintained by **[Devansh Saxena](https://github.com/Devanshsaxena12)**  
 Email Contact: `devanshsaxena2468@gmail.com`

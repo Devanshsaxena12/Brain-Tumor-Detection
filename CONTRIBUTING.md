@@ -29,7 +29,3 @@ You can provide feedback by:
 ## Style Guide
 *   Maintain clean, documented code.
 *   Follow PEP 8 for Python and standard ESLint rules for React.
-*   Keep the "Mission Control" aesthetic in mind for UI changes.
-
-## License
-By contributing to Neural Nexus, you agree that your contributions will be licensed under the MIT License.
