@@ -1,0 +1,35 @@
+# Specialized Dockerfile for Hugging Face Spaces
+FROM python:3.11-slim
+
+# Set up a new user with UID 1000 (Hugging Face requirement)
+RUN useradd -m -u 1000 user
+USER user
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
+
+WORKDIR $HOME/app
+
+# Install system dependencies for OpenCV (as root)
+USER root
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+USER user
+
+# Copy requirements and install
+COPY --chown=user backend/requirements.txt $HOME/app/requirements.txt
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Copy backend source code and weights
+COPY --chown=user backend $HOME/app/backend
+
+# Expose the default Hugging Face port
+EXPOSE 7860
+
+# Set environment variables for production
+ENV DEVICE=cpu
+ENV PYTHONPATH=$HOME/app/backend
+
+# Launch the FastAPI app on Port 7860
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "7860", "--proxy-headers", "--forwarded-allow-ips", "*"]

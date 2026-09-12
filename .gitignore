@@ -1,0 +1,54 @@
+# Data
+raw_images/
+dataset/
+healthcare_dataset.zip
+*.zip
+
+# Secrets
+.env
+*.env
+backend/.env
+frontend/.env
+
+# Bulky Binaries & Docs
+*.pdf
+*.docx
+docs/*.pdf
+docs/*.docx
+backend/*.pdf
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Misc
+.DS_Store
+hf_deploy/
